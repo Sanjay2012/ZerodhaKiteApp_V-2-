@@ -1,0 +1,28 @@
+Kite-zerodha login page validation (Negative Test Case)
+		- page title
+		- page text
+		- text box validation
+		- login button validation
+		- link valiadation
+		- error messages
+			- fields messages
+			- invalid credentials
+		
+Verify the Kite-zerodha login-logout functionality (Positive test case)
+	- login page-1 (page title)- UN, Pass, click login
+	- login page-2
+		- verify Continue text
+		- enter pin & click on continue button
+	- Home Page
+		- page title
+		- verify profile Name
+		- status profile menu -- Enable
+		- Click in PM
+		- Logout button status--> click on it
+	-After Logout Page
+		- Change User Link
+		- click on it
+	- login page
+		-page title
+		-text on page
+		
