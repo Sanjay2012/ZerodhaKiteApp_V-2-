@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Kite Login page validation</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>4/0/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>0/4/0</td>
 </tr><tr>
-<td>Started on:</td><td>Wed Jun 29 08:52:47 IST 2022</td>
+<td>Started on:</td><td>Wed Jun 29 20:40:26 IST 2022</td>
 </tr>
-<tr><td>Total time:</td><td>20 seconds (20461 ms)</td>
+<tr><td>Total time:</td><td>19 seconds (19539 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -67,40 +67,192 @@ function toggleAllBoxes() {
 </tr>
 </table><p/>
 <small><i>(Hover the method name to see the test class name)</i></small><p/>
-<table width='100%' border='1' class='invocation-passed'>
-<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
 <tr><td><b>Test method</b></td>
 <td width="30%"><b>Exception</b></td>
 <td width="10%"><b>Time (seconds)</b></td>
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='com.zerodha.kite.tests.KiteLoginPagesValidationWithDD.verifyInvalidCredentialError()'><b>verifyInvalidCredentialError</b><br>Test class: com.zerodha.kite.tests.KiteLoginPagesValidationWithDD<br>Test method: Invalid Credential Error Message</td>
-<td></td>
+<td title='com.zerodha.kite.tests.KiteLoginPagesValidationWithoutDD.verifyElementStatus()'><b>verifyElementStatus</b><br>Test class: com.zerodha.kite.tests.KiteLoginPagesValidationWithoutDD<br>Test method: Test element status</td>
+<td><div><pre>java.lang.AssertionError: The following asserts failed:
+	expected [ Zerodha&apos;s fast and elegant flagship trading platform] but found [Kite - Zerodha&apos;s fast and elegant flagship trading platform]
+	at com.zerodha.kite.tests.KiteLoginPagesValidationWithoutDD.verifyElementStatus(KiteLoginPagesValidationWithoutDD.java:40)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+... Removed 29 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace2128310218", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace2128310218'><pre>java.lang.AssertionError: The following asserts failed:
+	expected [ Zerodha&apos;s fast and elegant flagship trading platform] but found [Kite - Zerodha&apos;s fast and elegant flagship trading platform]
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:46)
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:30)
+	at com.zerodha.kite.tests.KiteLoginPagesValidationWithoutDD.verifyElementStatus(KiteLoginPagesValidationWithoutDD.java:40)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:135)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:673)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:220)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:945)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:193)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.testng.TestRunner.privateRun(TestRunner.java:808)
+	at org.testng.TestRunner.run(TestRunner.java:603)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:429)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:423)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:383)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:326)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1249)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1169)
+	at org.testng.TestNG.runSuites(TestNG.java:1092)
+	at org.testng.TestNG.run(TestNG.java:1060)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
 <td>0</td>
-<td>com.zerodha.kite.tests.KiteLoginPagesValidationWithDD@5b444398</td></tr>
+<td>com.zerodha.kite.tests.KiteLoginPagesValidationWithoutDD@67ab1c47</td></tr>
 <tr>
-<td title='com.zerodha.kite.tests.KiteLoginPagesValidationWithDD.verifyElementStatus()'><b>verifyElementStatus</b><br>Test class: com.zerodha.kite.tests.KiteLoginPagesValidationWithDD<br>Test method: Test element status</td>
-<td></td>
+<td title='com.zerodha.kite.tests.KiteLoginPagesValidationWithoutDD.verifyFieldValidation()'><b>verifyFieldValidation</b><br>Test class: com.zerodha.kite.tests.KiteLoginPagesValidationWithoutDD<br>Test method: Test Field Error Messages</td>
+<td><div><pre>java.lang.AssertionError: The following asserts failed:
+	expected [ Zerodha&apos;s fast and elegant flagship trading platform] but found [Kite - Zerodha&apos;s fast and elegant flagship trading platform]
+	at com.zerodha.kite.tests.KiteLoginPagesValidationWithoutDD.verifyFieldValidation(KiteLoginPagesValidationWithoutDD.java:51)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+... Removed 29 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace257260599", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace257260599'><pre>java.lang.AssertionError: The following asserts failed:
+	expected [ Zerodha&apos;s fast and elegant flagship trading platform] but found [Kite - Zerodha&apos;s fast and elegant flagship trading platform]
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:46)
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:30)
+	at com.zerodha.kite.tests.KiteLoginPagesValidationWithoutDD.verifyFieldValidation(KiteLoginPagesValidationWithoutDD.java:51)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:135)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:673)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:220)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:945)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:193)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.testng.TestRunner.privateRun(TestRunner.java:808)
+	at org.testng.TestRunner.run(TestRunner.java:603)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:429)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:423)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:383)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:326)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1249)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1169)
+	at org.testng.TestNG.runSuites(TestNG.java:1092)
+	at org.testng.TestNG.run(TestNG.java:1060)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
 <td>0</td>
-<td>com.zerodha.kite.tests.KiteLoginPagesValidationWithDD@5b444398</td></tr>
+<td>com.zerodha.kite.tests.KiteLoginPagesValidationWithoutDD@67ab1c47</td></tr>
 <tr>
-<td title='com.zerodha.kite.tests.KiteLoginPagesValidationWithDD.verifyFieldValidation()'><b>verifyFieldValidation</b><br>Test class: com.zerodha.kite.tests.KiteLoginPagesValidationWithDD<br>Test method: Test Field Error Messages</td>
-<td></td>
-<td>0</td>
-<td>com.zerodha.kite.tests.KiteLoginPagesValidationWithDD@5b444398</td></tr>
-<tr>
-<td title='com.zerodha.kite.tests.KiteLoginPagesValidationWithDD.verifyKiteLoginPageTitle()'><b>verifyKiteLoginPageTitle</b><br>Test class: com.zerodha.kite.tests.KiteLoginPagesValidationWithDD<br>Test method: Test Page title and Page Text<br/>
-<a href="#Output-1744389827" onClick='toggleBox("Output-1744389827", this, "Show output", "Hide output");'>Show output</a>
+<td title='com.zerodha.kite.tests.KiteLoginPagesValidationWithoutDD.verifyKiteLoginPageTitle()'><b>verifyKiteLoginPageTitle</b><br>Test class: com.zerodha.kite.tests.KiteLoginPagesValidationWithoutDD<br>Test method: Test Page title and Page Text<br/>
+<a href="#Output-1328349514" onClick='toggleBox("Output-1328349514", this, "Show output", "Hide output");'>Show output</a>
 
-<a href="#Output-1744389827" onClick="toggleAllBoxes();">Show all outputs</a>
-<div class='log' id="Output-1744389827">
+<a href="#Output-1328349514" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1328349514">
 =====Application Started=====<br/>
 </div>
 </td>
-<td></td>
-<td>8</td>
-<td>com.zerodha.kite.tests.KiteLoginPagesValidationWithDD@5b444398</td></tr>
+<td><div><pre>java.lang.AssertionError: The following asserts failed:
+	expected [ Zerodha&apos;s fast and elegant flagship trading platform] but found [Kite - Zerodha&apos;s fast and elegant flagship trading platform]
+	at com.zerodha.kite.tests.KiteLoginPagesValidationWithoutDD.verifyKiteLoginPageTitle(KiteLoginPagesValidationWithoutDD.java:30)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+... Removed 29 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1328349514", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1328349514'><pre>java.lang.AssertionError: The following asserts failed:
+	expected [ Zerodha&apos;s fast and elegant flagship trading platform] but found [Kite - Zerodha&apos;s fast and elegant flagship trading platform]
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:46)
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:30)
+	at com.zerodha.kite.tests.KiteLoginPagesValidationWithoutDD.verifyKiteLoginPageTitle(KiteLoginPagesValidationWithoutDD.java:30)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:135)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:673)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:220)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:945)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:193)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.testng.TestRunner.privateRun(TestRunner.java:808)
+	at org.testng.TestRunner.run(TestRunner.java:603)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:429)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:423)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:383)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:326)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1249)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1169)
+	at org.testng.TestNG.runSuites(TestNG.java:1092)
+	at org.testng.TestNG.run(TestNG.java:1060)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>7</td>
+<td>com.zerodha.kite.tests.KiteLoginPagesValidationWithoutDD@67ab1c47</td></tr>
+<tr>
+<td title='com.zerodha.kite.tests.KiteLoginPagesValidationWithoutDD.verifyInvalidCredentialError()'><b>verifyInvalidCredentialError</b><br>Test class: com.zerodha.kite.tests.KiteLoginPagesValidationWithoutDD<br>Test method: Invalid Credential Error Message</td>
+<td><div><pre>java.lang.AssertionError: The following asserts failed:
+	expected [ Zerodha&apos;s fast and elegant flagship trading platform] but found [Kite - Zerodha&apos;s fast and elegant flagship trading platform]
+	at com.zerodha.kite.tests.KiteLoginPagesValidationWithoutDD.verifyInvalidCredentialError(KiteLoginPagesValidationWithoutDD.java:67)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+... Removed 29 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace903218049", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace903218049'><pre>java.lang.AssertionError: The following asserts failed:
+	expected [ Zerodha&apos;s fast and elegant flagship trading platform] but found [Kite - Zerodha&apos;s fast and elegant flagship trading platform]
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:46)
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:30)
+	at com.zerodha.kite.tests.KiteLoginPagesValidationWithoutDD.verifyInvalidCredentialError(KiteLoginPagesValidationWithoutDD.java:67)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:135)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:673)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:220)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:945)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:193)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.testng.TestRunner.privateRun(TestRunner.java:808)
+	at org.testng.TestRunner.run(TestRunner.java:603)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:429)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:423)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:383)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:326)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1249)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1169)
+	at org.testng.TestNG.runSuites(TestNG.java:1092)
+	at org.testng.TestNG.run(TestNG.java:1060)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>1</td>
+<td>com.zerodha.kite.tests.KiteLoginPagesValidationWithoutDD@67ab1c47</td></tr>
 </table><p>
 </body>
 </html>

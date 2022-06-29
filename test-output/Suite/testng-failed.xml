@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Kite Login page validation(failed)">
+    <parameter name="browser" value="chrome"/>
+    <classes>
+      <class name="com.zerodha.kite.tests.KiteLoginPagesValidationWithoutDD">
+        <methods>
+          <include name="setupApplication"/>
+          <include name="verifyFieldValidation"/>
+          <include name="closeApplication"/>
+          <include name="verifyInvalidCredentialError"/>
+          <include name="verifyKiteLoginPageTitle"/>
+          <include name="verifyElementStatus"/>
+          <include name="takeScreenShotOnFailure"/>
+        </methods>
+      </class> <!-- com.zerodha.kite.tests.KiteLoginPagesValidationWithoutDD -->
+    </classes>
+  </test> <!-- Kite Login page validation(failed) -->
+</suite> <!-- Failed suite [Suite] -->

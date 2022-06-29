@@ -4,7 +4,7 @@
   <test thread-count="5" name="Kite Login page validation">
   <parameter name="browser" value="chrome" />
     <classes>
-      <class name="com.zerodha.kite.tests.KiteLoginPagesValidationWithDD"/>
+      <class name="com.zerodha.kite.tests.KiteLoginPagesValidationWithoutDD"/>
     </classes>
   </test> <!-- Test -->
   
