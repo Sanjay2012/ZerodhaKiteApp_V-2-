@@ -31,21 +31,16 @@ public class KiteLoginPage1{
 			// POM--> early initilization
 		}
 		
-//		public void clearKiteLoginPage1Username() {
-//			UN.clear();
-//		}
-		
 		public void
 		setKiteLoginPage1Username(String userName) {
+			UN.clear();
 			UN.sendKeys(userName);
 		}
-		
-//		public void clearKiteLoginPage1Password() {
-//			UN.clear();
-//		}
+	
 		
 		public void
 		setKiteLoginPage1Password(String password) {
+			PWD.clear();
 			PWD.sendKeys(password);
 		}
 		

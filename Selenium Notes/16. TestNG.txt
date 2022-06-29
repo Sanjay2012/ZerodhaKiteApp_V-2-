@@ -1,0 +1,162 @@
+TESTNG
+=========================
+# Why TestNG
+# What is TestNG
+# Advantages
+# Procedure to install TestNG in project
+# TestNG Annotations
+# TestNG Keywords
+# TestNG Suite--> parallel testing, cross browser testing etc 
+# TestNG Assertions
+# TestNG report
+# TestNG Data provider
+====================================
+# Why TestNG
+- Create POM classes & test class --> then we execute that class 
+- POM classes--> no of pages in app
+- Manual tester--> test cases
+- Choose the test cases from stable built--> from sprit
+- 10+10+10+10+15==> Scenario
+- After runing the all test cases we need to prepare --> Report
+- Time consuming & complex
+============================
+# What is TestNG
+--> its java Unit framework --> used to write test classes
+==========================
+# Adantages
+- all test cases in one shot
+- report generation
+- advan annotations/ keywords
+- ex. 100 executed--> 20 get failed--> failedTest.xml
+============================
+# Procedure to install/ configure the TestNG in project
+- install TestNG plugs into Eclipse from Help--> marketplace --> TestNG--> Install
+- Configure: build path--> configu--> Add library--> TestNG
+================================
+#TestNG Annotations
+
+@BeforeSuite: execute only once before start of class/es--> before @BeforeClass
+@AfterSuite: execute only once after end of class/es--> After @AfterClass
+@BeforeClass: excecute only once before execution of test classes (only once)
+@AfterClass: excecute only once after execution of test classes (only once)
+@BeforeMethod:use for exceution of Test method before execution of every test @Test
+@AfterMethod : use for exceution of Test method after execution of every test @Test
+@Test: used to execution of test method
+
+# Functional flow
+--------------------
+TC1: login-logout functionality
+
+1. open the browser --url                -----> Before class
+2. login app-- credentials               -----> Before Method
+3. tc1--> page title--> verification      -----> Test
+4. tc2--> profile name--> verification    -----> Test
+5. tc3--> Welcome page title--> Verification   ---- Test
+6. logout                                -----> After Method
+7. close browser                          -----> After class
+
+
+TC2: Facebook Post functionality
+1. open the browser --url
+2. login app-- credentials
+3. post the message
+4. tc1-- verification
+5. logout
+6. close browser
+
+==========================
+package testng;
+
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Test;
+
+public class TestngAnnotations {
+	@BeforeSuite
+	public void beforeSuite() {
+		System.out.println("This is before suit method");
+	}
+	@AfterSuite
+	public void afterSuite() {
+		System.out.println("This is after suit method");
+	}
+	
+	@BeforeClass
+	public void beforeClass() {
+		System.out.println("Open the app url in browser");
+	}
+	@AfterClass
+	public void afterClass() {
+		System.out.println("Close the browser");
+	}
+	
+	@BeforeMethod
+	public void beforeMethod() {
+		System.out.println("Run before every Test method");
+	}
+	@AfterMethod
+	public void AfterMethod() {
+		System.out.println("Taking failed test methods screenshots");
+	}
+	
+	@Test
+	public void TC1() {
+		System.out.println("Verify page Title");
+	}
+	
+	@Test
+	public void TC2() {
+		System.out.println("Verify Profile Name");
+	}
+	
+	@Test
+	public void TC3() {
+		System.out.println("Verify Welcome Page Text");
+	}
+
+}
+======================
+Result:
+------------
+[RemoteTestNG] detected TestNG version 7.4.0
+This is before suit method
+Open the app url in browser
+Run before every Test method
+Verify page Title
+Taking failed test methods screenshots
+Run before every Test method
+Verify Profile Name
+Taking failed test methods screenshots
+Run before every Test method
+Verify Welcome Page Text
+Taking failed test methods screenshots
+Close the browser
+PASSED: TC1
+PASSED: TC2
+PASSED: TC3
+
+===============================================
+    Default test
+    Tests run: 3, Failures: 0, Skips: 0
+===============================================
+
+This is after suit method
+
+===============================================
+Default suite
+Total tests run: 3, Passes: 3, Failures: 0, Skips: 0
+===============================================
+
+
+
+
+
+
+
+
+ 
+

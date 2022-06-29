@@ -1,0 +1,214 @@
+Session-1
+==================
+- Web automation
+
+1. Defination
+2. Drwabacks of manual testing
+3. Adv of automation
+4. Tools available for web automation
+5. adv/drwa of selenium
+6. Selenium flavors
+7. Selenium architecture
+8. Selenium setup 
+9. How to open url in browser
+===================================
+
+# Defination:
+(Web Automation testing)
+-Testing an app feature/ functionality with the help of automation tool and executing test script
+
+# Drawback of manual testing
+
+               test cases          Regression (Test suite)   Hrs to test (Execution)
+Release 1---> 100 test cases--->   15-10 cases         ----> 1hr
+Release 2---> 100 TC        --->   15                  ----> 2-3 hrs
+        3---> 100 TC        --->   20                  ----> 4-5 hrs
+
+
+
+
+
+       12-15
+
+- one story point=9 hrs
+
+1. More efforts
+2. Regression testing is time consuming
+3. Test cycle duration will increase
+4. Compatability testing is dificulty (devices/browser/platform(os- window, Mac, iOS))
+
+-------------------------------------------
+
+# Advantages
+1. Reusability of script
+2. compatabilty testing easy
+3. Less human efforts
+4. Project duration will decrease
+
+**Note: always perform automation for stable built only
+ 1. if tested by manual tester and no defect are there
+ 2. E2E functionlities/ critical working fine
+ 3. Ready ship--> stable built
+
+** N-1
+N== current sprint/ release
+N-1==> previous release
+
+4. project cost will reduced
+5. reloable and effective 
+============================
+# Tools available
+- Web automatols---> focused
+- not mobile automation
+- not desktop app  xyz.exe
+
+**Selenium-- imp (free)
+Selendroid
+Katalon studeo
+Cypruss
+Appium---> Mobile automation
+======================================
+# Why selenium:
+1. open source
+2. Multi language support (Java, python, C# etc)
+3. Cross browser testing is possible (chrome/firefox/IE/Edge/Safari)
+4. cross platform testing also possible (window, MAC, iOS)
+====================================
+#Drawbacks
+
+1. canot automatate desktop/ standalone app
+2. canot automate captcha (alphanumetic in image form, digital and char) except arithmetic
+3. Canot read barcode
+4. Canot support file uploading (we can but need external tools)
+5. Adhoc testing is not possible
+
+===========================================
+Feedback: 5
+1. Manual concept
+2. Api testing / SQL (Backend testing)
+3. Java concepts
+4. Automation concepts(locators, handle elements, Framework)
+5. Communication skill 
+
+=======================
+
+# Selenium Flavors
+1. Selenium IDE--> firefox/server not required
+2. Selenium RC--> all browser/ server
+3. Selenium grid--> parllel testing
+		Hub (Test Script==user machine=500)
+		   (testNG suite )
+                          |
+                     Distribution
+mac1           mac2           mac3             mac4        mac5
+100		100		100		100        100
+
+4. Selenium Webdriver (version 4.0)
+- all browsers
+- server not required
+- xpath (full path not requied(/) == use relative xpath (//))
+- webdriver manager (then not required to mention driver path)
+
+==========================================
+# Selenium Architecture
+1. Search context: (I)
+Supermost inetrface which conatain abstarct meyhods
+Those abstract methods are inherited to Webdriver (I) using extends keyword
+
+2.Webdriver(I):
+- It contain the abstract methods of Search context(I)
+- as well as its own abstract methods
+-  All abstract methods are implemented in selenium remote webdriver (IC) using implentation keyword
+
+3. Selenium remote webdriver (IC)
+- Selenium remote webdriver class is extended to different browser (Chrome, FF, IE, Edge)
+
+-To do this we do the run polymorphism (method overriding)
+- doing upcasting in selenium
+
+- So need to create an object of respective webdriver class(Chrome, FF, IE, Edge)
+ with refence of webdriver interface
+
+ex. className Obj=new className();
+    
+    ChromeDriver driver=new ChromeDriver();
+    geckoDriver driver=new geckoDriver();
+
+instead of that
+
+WebDriver driver=new ChromeDriver();
+WebDriver driver=new geckoDriver();
+
+============================================================
+# Selenium setup
+
+Requirements
+- IDE=> Eclipse
+- Selenium Webdriver (Selenium Jar file--> add to project)
+https://jar-download.com/download-handling.php
+
+- Browser Drivers
+ 1. chromeDribver---->Chrome browser
+ 2. geckoDriver ----> firefox
+ 3. msedgeDriver ---> Edge browser
+
+ # Add selenium jar into the project
+- Right click on project
+- Go to Built path
+-Configure built path
+- choose library
+- click on classpath
+- Add external jars
+- choose all senenium jars
+- click on apply---> apply close
+
+
+
+
+
+
+
+
+
+====================================
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class OpenBrowser {
+
+	public static void main(String[] args) throws InterruptedException {
+		// set the driver path
+				System.setProperty("webdriver.chrome.driver", "D:\\Selenium\\chromedriver.exe");
+				// create an object for chrome driver class
+				WebDriver driver=new ChromeDriver();
+				driver.get("https://www.facebook.com/");
+				Thread.sleep(3000);
+				driver.close();
+				
+	}
+
+}
+
+----------------------------
+
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class OpenBrowser {
+
+	public static void main(String[] args) throws InterruptedException {
+		// set the driver path
+				System.setProperty("webdriver.firefox.driver", "D:\\Selenium\\geckodriver.exe");
+				// create an object for chrome driver class
+				WebDriver driver=new FirefoxDriver();
+				driver.get("https://www.facebook.com/");
+				Thread.sleep(3000);
+				driver.close();
+				
+	}
+
+}
+------------------------------
+
+
+
+

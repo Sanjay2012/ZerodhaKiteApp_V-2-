@@ -1,0 +1,36 @@
+<html>
+<body>
+<table Border=2 ID="1234">
+<tr>
+<th>Sr.No</th>
+<th>Book Name</th>
+<th>Book Prize</th>
+</tr>
+
+<tr>
+<td>1</td>
+<td>Manual</td>
+<td>100</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>SQL</td>
+<td>200</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>Java</td>
+<td>300</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>Selenium</td>
+<td>400</td>
+</tr>
+
+</table>
+</body>
+</html>

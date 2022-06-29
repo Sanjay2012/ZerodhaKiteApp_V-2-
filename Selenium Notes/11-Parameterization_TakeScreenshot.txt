@@ -1,0 +1,184 @@
+# Session-11
+======================
+Agenda
+# Take a Screenshot--->
+# Parameterization/ read data from excel sheet (data driven concept)
+# Read data from properties file (data driven concept)
+========================================
+
+1. How to take screenshot using selenium
+-------------------------------------------
+Steps:
+public static Webdriver driver=new ChromeDriver();
+
+1. (TakeScreenshot)driver  --> takescreenshot --> interface
+2. we need to call function
+	getScreenshotAs(OutputType.file)
+# File src=((TakesScreenshot)driver).getScreenshotAs(OutputType.file);
+
+this screenshot is available inside the memory
+
+3. File dest=new File("provide the path where we need to store that screenshot")
+
+4. to store this screenshot in local drive, we need to call method
+	//FileHandler.copy(src,dest)
+	FileUtils.copyFile(src,dest)
+
+-------------------
+package takeScreenshot;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.FileHandler;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import net.bytebuddy.utility.RandomString;
+
+public class TakeScreenshot {
+
+	public static void main(String[] args) throws InterruptedException, IOException {
+		System.setProperty("webdriver.chrome.driver", "D:\\Automation Batch-9\\chromedriver.exe");
+		// create an object for chrome driver class
+		WebDriver driver=new ChromeDriver();
+		driver.get("https://www.facebook.com/");
+		driver.manage().window().maximize();
+		
+		Thread.sleep(5000);
+		// source --> inside the memory
+		File src = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		
+		// dest--> file class
+		
+		//File dest=new File("C:\\Users\\Dell\\eclipse-workspace\\AutomationBatch-9\\Screenshots\\error.jpg");
+		String str = RandomString.make(4);
+		
+		//File dest=new File("./Screenshots/error1.jpg");
+		
+		File dest=new File("./Screenshots/error"+str+".jpg");
+		
+		
+		FileUtils.copyFile(src, dest);
+		driver.quit();
+
+	}
+
+}
+
+
+===========================================
+# Parameterization/ read data from excel sheet (data driven concept)
+- Framework
+# excel sheet---> dynamic data
+# properties file--> static data  --> admin --> UN, PW, URL, secrete data--> IMP
+# CSV file
+# dataProvider
+# set the values at suite level
+
+
+1. read the excel sheet
+--------------------------
+- apache poi jar-- download
+# https://jar-download.com/artifacts/org.apache.poi
+- import import into project
+- read  --> FileInputStream
+- write --> FileOutputStream
+
+# procedure
+1. create object for read  --> FileInputStream  (take excel sheet path)
+2. to open excel sheet --> method "create"--> workbookFactory class
+3. to open specific sheet from excel--> getSheet("data")
+4. to identify the row--> getrow(1)
+5. to identify the col--> getcell(1)
+6. to read the values present in cell--> getStringValue(), getNumericValue(), getBooleanValue()
+
+------------------------
+package parameterization;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+
+public class ReadCellValue {
+
+	public static void main(String[] args) throws EncryptedDocumentException, IOException {
+			FileInputStream file=new FileInputStream("./testdata/testdata.xlsx"); 
+		
+			 String desiredValue = WorkbookFactory.create(file).
+					getSheet("Sheet1").
+					getRow(1).
+					getCell(1).getStringCellValue();
+			System.out.println(desiredValue);
+	
+	}
+
+}
+==================================================
+package part1_seleniumBasic;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class FacebookLogin {
+
+	public static void main(String[] args) throws InterruptedException, EncryptedDocumentException, IOException {
+		System.setProperty("webdriver.chrome.driver", "D:\\Automation Batch-9\\chromedriver.exe");
+		// create an object for chrome driver class
+		WebDriver driver=new ChromeDriver();
+		driver.get("https://www.facebook.com/");
+		Thread.sleep(3000);
+		driver.manage().window().maximize();
+		
+		FileInputStream file=new FileInputStream("./testdata/testdata.xlsx"); 
+		Sheet sh = WorkbookFactory.create(file).getSheet("data");
+		
+		String username = sh.getRow(1).getCell(1).getStringCellValue();
+		String password = sh.getRow(2).getCell(1).getStringCellValue();
+		
+		
+		driver.findElement(By.xpath("//input[@id=\"email\"]")).sendKeys(username);
+		Thread.sleep(2000);
+		
+		driver.findElement(By.xpath("//input[@id=\"pass\"]")).sendKeys(password);
+		Thread.sleep(2000);
+		
+		driver.findElement(By.xpath("//button[@class=\"_42ft _4jy0 _6lth _4jy6 _4jy1 selected _51sy\"]")).click();
+		Thread.sleep(10000);
+		
+		
+		driver.quit();
+
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

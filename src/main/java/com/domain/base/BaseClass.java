@@ -1,18 +1,15 @@
 package com.domain.base;
 
-import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
@@ -20,6 +17,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 
+import com.domain.utilityClass.Utility;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -30,14 +28,17 @@ public class BaseClass {
 	@Parameters("browser")
 	@BeforeClass
 	public void setupApplication(String browser) {
-		//readConfig();
+		readConfig();
 		if (browser.equalsIgnoreCase("chrome")) {
 			
 //			System.setProperty("webdriver.chrome.driver",
 //					System.getProperty("user.dir") + "//drivers/chromedriver.exe");
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions options = new ChromeOptions();
+			options.addArguments("--headless");
 			options.addArguments("--incognito");
+			options.addArguments("--disabled-notifications");
+		
 			DesiredCapabilities capabilities = new DesiredCapabilities();
 			capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 			options.merge(capabilities);
@@ -63,31 +64,24 @@ public class BaseClass {
 	@AfterMethod  // after execution of test method @Test
 	public void takeScreenShotOnFailure(ITestResult testResult) throws IOException {
 		if (testResult.getStatus() == ITestResult.FAILURE) {
-			captureScreenshot(driver, testResult.getName());
+			Utility.captureScreenshot(driver, testResult.getName());
 		}
 
 	}
 	
-	
-	/**
-	 * This method is for capture the screenshots once any method get failed
-	 * 
-	 * @param driver
-	 * @param testName -- name of failed method
+	/*
+	 * Method to read config properties file
 	 */
-
-	public static void captureScreenshot(WebDriver driver, String testName) throws IOException {
+	public void readConfig() {
 		try {
-			File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-			File destFile = new File("./Screenshots/" + testName + ".png");
-			FileHandler.copy(scrFile, destFile);
-		} catch (WebDriverException e) {
-			// TODO Auto-generated catch block
+			prop = new Properties();
+			FileInputStream file = new FileInputStream("./src/test/resources/config/Configuration.properties");
+			prop.load(file);
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
+	
 }

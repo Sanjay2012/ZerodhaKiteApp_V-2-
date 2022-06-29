@@ -1,0 +1,210 @@
+Handling the PopUps
+======================
+- Popup is small/sepearate window which will be displayed 
+when we perform action on any componnent present in webpage.
+- We canot able to interact the elements present in popup (not for all- Hidden division)
+
+# Types of popup
+==================
+1. Alert popup **
+2. Child browser popup **
+3. Auth popup **
+4. Hidden division popup
+5. File upload
+6. File download
+===============================
+# Hidden division popup
+- colorful
+- we can inspect
+- switchTo()--> no need
+- we can handle directly
+- flipkart
+
+-------------------------------------
+# Alert popup **
+- we canot inspect elements present in it
+- buttons: Ok/cancel/ textbox
+- Alter interface which contain some static methods
+
+Procedure:
+1.  switch selenium focus from main page to alert popup
+	Alert alt=driver.switchTo().alert();
+2. we need to use alert interface methods as per elements present / as per action need to peform
+	click on Ok---> alt.accept();
+	click on Cancel--> alt.dismiss();
+	to get text--> alt.getText();
+
+
+
+package handlingPopUps;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class AlertPopUp {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "D:\\Automation Batch-9\\chromedriver.exe");
+		// create an object for chrome driver class
+		WebDriver driver=new ChromeDriver();
+		driver.get("https://demoqa.com/alerts");
+		Thread.sleep(3000);
+		driver.manage().window().maximize();
+		
+		//Click Button to see alert
+		
+//		driver.findElement(By.id("alertButton")).click();
+//		
+//		Thread.sleep(3000);
+//		
+//		// handle alert popup
+//		Alert alt=driver.switchTo().alert();
+//		Thread.sleep(3000);
+//		alt.accept();
+//		
+//		Thread.sleep(3000);
+		//On button click, alert will appear after 5 seconds
+		
+		driver.findElement(By.id("confirmButton")).click();
+		Alert alt1=driver.switchTo().alert();
+		Thread.sleep(3000);
+		alt1.accept();
+		//alt1.dismiss();
+		
+		
+		
+
+	}
+
+}
+
+---------------------------------------------------
+# Child browser popup **
+- elements are inspectable
+- url, maximize,close
+
+* procedure
+------------
+1. switch driver focus from main page to child  browser
+	driver.switchTo().window("agru (ids)- main/child")
+2. how to get the ids/address for main/child browser
+String mainId=driver.getWindowHandle()---> id of main page
+sop(mainId);
+
+set<String> ids=driver.getWindowHandles()--> ids of main and child browser
+sop(ids)-->wrong 
+
+# convert set into list
+ArrayList al=new ArrayList(ids);
+sop(al.get(0))---> print id of main page
+sop(al.get(1))--> print id of child
+
+# https://skpatro.github.io/demo/links/
+
+Task:
+1. click on New window button --> main browser--> it will open child browser
+2. switch focus from main to child
+3. maximize it
+4. click on home button
+5. switch focus from child to main 
+6. click on home button present in main browser
+
+
+package handlingPopUps;
+
+import java.util.ArrayList;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class ChildBrowserPopUp {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "D:\\Automation Batch-9\\chromedriver.exe");
+		// create an object for chrome driver class
+		WebDriver driver=new ChromeDriver();
+		driver.get("https://skpatro.github.io/demo/links/");
+		Thread.sleep(3000);
+		driver.manage().window().maximize();
+		
+		driver.findElement(By.xpath("//*[@value=\"New Window\"]")).click();
+		
+		// it open child browser
+		// Now obtain the ids for main and child
+		
+		Set<String> ids = driver.getWindowHandles();
+		ArrayList<String> al= new ArrayList<String>(ids);
+		String idOfMain = al.get(0);
+		System.out.println(idOfMain);
+		
+		String idOfChild = al.get(1);
+		System.out.println(idOfChild);
+		
+		
+		// switch the focus to child
+		driver.switchTo().window(idOfChild);
+		Thread.sleep(3000);
+		
+		// maximize child browser
+		driver.manage().window().maximize();
+		
+		
+		// click on home button
+		driver.findElement(By.xpath("(//*[text()='HOME'])[1]")).click();
+		Thread.sleep(3000);
+		
+		// switch focus from child to main
+		
+		driver.switchTo().window(idOfMain);
+		Thread.sleep(3000);
+		
+		driver.findElement(By.xpath("//*[@value=\"Home\"]")).click();
+		
+		
+		driver.quit();
+		
+	}
+
+}
+=======================================
+# Authentication Popup
+https://the-internet.herokuapp.com/basic_auth
+- elements present in this popup are not inspectable
+
+https://username:password@the-internet.herokuapp.com/basic_auth
+
+
+package handlingPopUps;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class AuthPop {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "D:\\Automation Batch-9\\chromedriver.exe");
+		// create an object for chrome driver class
+		WebDriver driver=new ChromeDriver();
+		driver.get("https://admin:admin@the-internet.herokuapp.com/basic_auth");
+		Thread.sleep(3000);
+		driver.manage().window().maximize();
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

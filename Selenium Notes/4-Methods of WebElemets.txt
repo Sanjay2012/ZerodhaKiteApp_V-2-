@@ -1,0 +1,194 @@
+Session-4
+==================================
+Methods of WebElement
+
+-Recap
+1. Architecture of selenium
+2. Methods of webdriver
+ - get(), close(), getTitle(), getCurrentuRl(), maximize(), setPosition()
+   navigate().To, refresh(), forword(), back()
+   setSize()
+3. understood HTML--> to locate the webelemnts
+   # locator of weblements --> tag, attributeName="value"
+======================================
+
+# Methods of WebElements
+Def: WebElement(Interface)
+use to perform actions on element presents in webpage
+
+1. sendkeys("String data")--> used to enter values into the input field 
+   ex of webelemnts which accepts inputs==> textbox
+  - need to pass arg--> string
+
+2. click()--> used to perform click operation on elemnts
+        ex. button, link, radio, chrckbox
+
+3. isEnabled()-->verify the element is enabled or disabled
+   - return type is--> boolean---> true/ false
+	- if enabled===> true
+        - if disabled ===> false
+   ex. submit  button
+      if button is disabled---> false
+	if button is enabled---> true
+
+
+4. isSelected()-->verify element checked or unchecked
+ - return type is--> boolean---> true/ false
+ex. radio button/ checkbox
+	- if is checked===> true
+        - if button is unchecked ===> false
+
+5. isDisplayed()---> verify the elemnt is present / not in webpage
+- return type is--> boolean---> true/ false
+	- if present===> true
+        - if not present ===> false
+
+
+6.getText();--> used to get text present in webpage
+- return type string
+
+7. clear();-->used to clear the value in the textbox
+
+
+=================================================
+-inspect the webpage
+- Ctrl+F ===> search box --> locator expression
+
+//relative xpath
+
+
+- equals()
+- equalsIgnoreCase()
+- contains()
+
+====================================================
+
+
+package methodsOfWebElements;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Methods {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "D:\\Automation Batch-9\\chromedriver.exe");
+		WebDriver driver=new ChromeDriver();
+		driver.get("https://www.facebook.com/");
+		Thread.sleep(3000);
+		driver.manage().window().maximize();
+		
+		WebElement createBtn = driver.findElement(By.xpath("//a[@class=\"_42ft _4jy0 _6lti _4jy6 _4jy2 selected _51sy\"]"));
+		
+		// isEnabled()
+		boolean status = createBtn.isEnabled();
+		if (status==true) {
+			System.out.println("button is enabled");
+			
+		}else {
+			System.out.println("Button disabled");
+		}
+		
+		createBtn.click();
+		Thread.sleep(2000);
+		
+		WebElement femaleBtn = driver.findElement(By.id("u_x_4_Gl"));
+		
+		boolean result1 = femaleBtn.isSelected();
+		
+		if (result1==true) {
+			System.out.println("button is selecte");
+			
+		}else {
+			System.out.println("Button not selected");
+		}
+		
+		
+		Thread.sleep(2000);
+		
+		femaleBtn.click();
+		
+		boolean result2 = femaleBtn.isSelected();
+		if (result2==true) {
+			System.out.println("button is selected");
+			
+		}else {
+			System.out.println("Button not selected");
+		}
+	}
+
+}
+============================================
+
+package methodsOfWebElements;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class SendKeysAndClear {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "D:\\Automation Batch-9\\chromedriver.exe");
+		WebDriver driver=new ChromeDriver();
+		driver.get("https://www.facebook.com/");
+		Thread.sleep(3000);
+		driver.manage().window().maximize();
+		
+		WebElement fName = driver.findElement(By.id("email"));
+		WebElement createBtn = driver.findElement(By.xpath("//a[@class=\"_42ft _4jy0 _6lti _4jy6 _4jy2 selected _51sy\"]"));
+		
+//		
+//		//sendkeys()
+//		fName.sendKeys("Shivansh@in.in");
+//		Thread.sleep(3000);
+//		
+//		//clear()
+//		
+//		fName.clear();
+//		Thread.sleep(2000);
+//		
+//		
+		// getText()
+		
+//		String str = createBtn.getText();
+//		System.out.println(str);
+//		
+//		if(str.equalsIgnoreCase("Create New Account")) {
+//			
+//			System.out.println("Correct text");
+//		}else {
+//			System.out.println("Erong text");
+//		}
+		
+		
+		boolean status = driver.getPageSource().contains("Create new account");
+		System.out.println(status);
+		
+		if (status==true) {
+			System.out.println("content present in page");
+			
+		}else {
+			System.out.println("content not present in page");
+		}
+		
+		
+		String pageTitle = driver.getTitle();
+		System.out.println(pageTitle);
+		if (pageTitle.equalsIgnoreCase("Facebook – log in or sign up")) {
+			System.out.println("landed on correct page");
+			
+		}else {
+			System.out.println("wrong page");
+		}
+		
+	}
+
+
+	}
+
+
+

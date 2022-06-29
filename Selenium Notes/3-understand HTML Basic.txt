@@ -1,0 +1,102 @@
+Session-3
+===================
+HTML coding
+
+# Why html coding is required
+-To identify an webelement uniquly and to perform actions using selenium methods
+
+# textbox
+- FirstName
+- LastName
+- Mobile No
+- Email
+- password
+- Confirm Password
+
+# radio battons (Gender)
+- Male
+- Feamle
+
+# dropdown (country)
+- India
+- USA
+- Eng
+
+# link (login page)
+login page
+
+#button
+Sign Up
+
+===================
+#Keywords
+1. html--to create webpage
+2. Every keyword should be closed within angular braces using (/keyword)
+3. input- used to create an element
+4. select- used to create list
+5. link -- a href
+6. table-- to create table
+7. img- while creating image
+
+# tagnames
+Any keyword which is present immediatly after angular brace (<)
+ex input, html, body, table etc
+
+# Attribute
+Any keyword which is present after tagname with equal to symbol until > braces
+ex type="text", type="radio", id="1234", type="checkbox", name='email'
+- pair
+- attributeName='attributeValue'
+
+# text
+Any keyword which is present in between >text<
+ex. >loginPage<
+
+============================
+sendkeys()===> enter test into box
+Click()===> click on button/ radio button
+
+
+============================
+Code for created webpage
+-----------------------------
+
+package part1_seleniumBasic;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class FillRegistrationForm {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "D:\\Automation Batch-9\\chromedriver.exe");
+		// create an object for chrome driver class
+		WebDriver driver=new ChromeDriver();
+		driver.get("file:///D:/Automation%20Batch-9/registration.html");
+		Thread.sleep(3000);
+		
+		driver.findElement(By.xpath("//input[@name=\"Fname\"]")).sendKeys("Kedar");
+		Thread.sleep(2000);
+		
+		driver.findElement(By.xpath("//input[@name=\"Lname\"]")).sendKeys("Kumar");
+		Thread.sleep(2000);
+		
+		driver.findElement(By.xpath("//input[@name=\"Mobile\"]")).sendKeys("5622662");
+		Thread.sleep(2000);
+		
+		
+		driver.findElement(By.xpath("//input[@name=\"email\"]")).sendKeys("kedar@in.in");
+		Thread.sleep(2000);
+		
+		
+		driver.findElement(By.xpath("//input[@name=\"male\"]")).click();
+		Thread.sleep(5000);
+		
+		driver.quit();
+		
+
+	}
+
+}
+

@@ -1,0 +1,224 @@
+# Read properties file-->
+# Handling Iframe
+==================
+
+# Read properties file
+Steps
+1. we need to create properties file
+2. create a object for FileInputStram class
+	FileInputStream file=new FileInputStream("file path")
+3. use load(file)---> Properties class
+	Properties prop=new Properties
+	prop.load(file);
+4. prop.getProperty("username")
+
+----------------
+package readPropertiesFile;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
+
+public class ReadPropertiesFile {
+
+	public static void main(String[] args) {
+		Properties prop=new Properties();
+		try {
+			FileInputStream file=new FileInputStream("./Config/Configuration.properties");
+			prop.load(file);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println(prop.getProperty("jobTitle"));
+		
+
+	}
+
+}
+------------------------------
+package readPropertiesFile;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
+
+import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class Form_properties {
+	public static void main(String[] args) throws InterruptedException {
+		Properties prop=new Properties();
+		try {
+			FileInputStream file=new FileInputStream("./Config/Configuration.properties");
+			prop.load(file);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		// capture locators of all elements
+		
+		By fName=By.id("first-name");
+		By lName=By.id("last-name");
+		By jobTitle=By.id("job-title");
+		By eduLevel=By.xpath("//*[@type=\"radio\"]");
+		By sex=By.xpath("//*[@type=\"checkbox\"]");
+		By dropdown=By.xpath("//*[@id=\"select-menu\"]");
+		By date=By.id("datepicker");
+		By submitButton=By.xpath("//*[@role=\"button\"]");
+		
+		
+		System.setProperty("webdriver.chrome.driver", "./Drivers/chromedriver.exe");
+		WebDriver driver=new ChromeDriver();
+		driver.get("http://formy-project.herokuapp.com/form");
+		driver.manage().window().maximize();
+		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		
+		driver.findElement(fName).sendKeys(prop.getProperty("firstName"));
+		Thread.sleep(2000);
+		driver.findElement(lName).sendKeys(prop.getProperty("lastName"));
+		Thread.sleep(2000);
+		driver.findElement(jobTitle).sendKeys(prop.getProperty("jobTitle"));
+		Thread.sleep(2000);
+		driver.findElement(eduLevel).click();
+		Thread.sleep(2000);
+		driver.findElement(sex).click();
+		Thread.sleep(2000);
+		
+		WebElement exp = driver.findElement(dropdown);
+		Select select=new Select(exp);
+		select.selectByValue("2");
+		
+		Thread.sleep(2000);
+		
+		driver.findElement(date).sendKeys(prop.getProperty("date"));
+		Thread.sleep(2000);
+		
+		driver.findElement(submitButton).click();
+		Thread.sleep(2000);
+		
+		Assert.assertTrue(driver.getPageSource().contains(prop.getProperty("sucessMessage")));	
+		
+		driver.quit();
+	}
+}
+------------------------------
+# Handling Iframe (Ex. adv available in webpage)
+---------------------------
+- Defn:
+- Displaying webpage as a part of another webpage--> iFrame
+- Visible on webpage, but physically not there--> 
+- webdriver directly not able to interact to that particular part of page
+
+# How to habdle iFrame
+1. switch the selenium focus from main page to frame
+	driver.switchTo().frame(arg)
+
+2. to loacte iframe we have different ways (arg)
+	i. id--> String
+	ii. name--> String
+	iii. index--> int
+	iv. xpath--> String --> expression
+
+Note:
+- once we performe the action on iframe --> selenium will not navigate by defalut to main page
+-two methods
+1. parentFrame();
+--> use when we want to navigate from child to immediate parent not to main page
+2. DefaultContent();
+--> use when we want to navigate any child to main page
+=========================
+https://demo.guru99.com/test/guru99home/
+
+# Write a script to click on Jmeter mage easy image
+
+package hadlingIframe;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Iframe {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "./Drivers/chromedriver.exe");
+		WebDriver driver=new ChromeDriver();
+		driver.get("https://demo.guru99.com/test/guru99home/");
+		Thread.sleep(3000);
+		driver.manage().window().maximize();
+		
+		// identify how many iframes are present in webpage
+		
+		List<WebElement> frameList = driver.findElements(By.tagName("iframe"));
+		System.out.println(frameList.size());
+		
+		driver.switchTo().frame("a077aa5e"); // jmeter iframe--> id
+		
+		// click on jmeter image
+		driver.findElement(By.xpath("//img[@src=\"Jmeter720.png\"]")).click();
+		
+		//driver.switchTo().parentFrame();
+		driver.switchTo().window("main pageID");
+		driver.close();
+
+	}
+
+}
+==================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

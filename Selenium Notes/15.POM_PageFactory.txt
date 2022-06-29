@@ -1,0 +1,194 @@
+Selenium Framework:
+- code structure that makes code maintance easy and effective
+- without framework testdata+code in same location
+- such script is not reusable
+
+Adva:
+- increase code reusability (data driven)--> script, data in seperate location
+- higher portability
+- resuce the cost of script maintanace
+- better code readability
+
+===========================
+1. data driver--> excel sheet / properties file
+2. keyword driven
+3. Hybrid
+
+==================================
+# Investment banking domain
+
+# Zerodha application
+- without data driven
+- **with data driven
+--------------------------
+Framework--> Selenium + TestNg + datadriven with Maven project
+
+# Page Object Model(POM) with page factory
+--------------------------------------
+POM-java object design pattern in selenium
+
+1. Webpage are represeted as classes
+2. The various elements present in page are defined as varibles
+
+- Page factory to initialize the webelements 
+- POM follow the encapsulation
+
+POM with page factory.initElement()
+
+#Que: If i want to call non static methods with parameter in same or diffrent class is possible using
+simply creating the object of the class
+
+# When we are deling with non static methods with parameter then we need to create constructor
+
+- data memebers (webelements)  should be declared  as private
+- Initialize: within constructor with access level is public
+- write different methods to perform actions on data members--> public
+
+--------------------------------------------------
+# initElement
+- Lazy initization
+
+=================================
+package pom_initElement;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class FacebookLoginPageObject {
+	WebDriver driver;
+	// webElement declaration
+
+	@FindBy(id = "email")
+	private WebElement emailField;
+	@FindBy(id = "pass")
+	private WebElement passwordField;
+	@FindBy(xpath = "//*[text()='Log In' and @name='login']")
+	private WebElement loginButton;
+	
+
+	public FacebookLoginPageObject(WebDriver driver) {
+		this.driver=driver;
+		PageFactory.initElements(driver, this);
+
+	}
+
+	/**
+	 * Method to enter usename
+	 */
+
+	public void enterUsername(String emailAddress) {
+		emailField.clear();
+		emailField.sendKeys(emailAddress);
+	}
+
+	/**
+	 * Method to enter password
+	 */
+
+	public void enterPassword(String password) {
+		passwordField.clear();
+		passwordField.sendKeys(password);
+	}
+	/**
+	 * Method to click on log in buttons
+	 */
+
+	public void clickOnLogInButton() {
+		loginButton.click();
+	}
+
+}
+===========================================
+package pom_initElement;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class FacebookHomePageObject {
+	WebDriver driver;
+	Actions action;
+	// drclaration of Webelements
+	
+	@FindBy(xpath="//*[@aria-label=\"Your profile\" and  @role=\"button\"]")
+	private WebElement profileMenu;
+	
+//	@FindBy(xpath="//*[text()='Log Out']")
+//	private WebElement logout;
+	
+	private By logout=By.xpath("//*[text()='Log Out']");
+	
+	public FacebookHomePageObject(WebDriver driver) {
+		this.driver=driver;
+		action=new Actions(driver);
+		PageFactory.initElements(driver, this);
+	}
+	
+	
+	/**
+	 * method to click on profile menu
+	 */
+	
+	public void clickOnProfileMenu() {
+		//profileMenu.click();
+		// javascript
+		action.moveToElement(profileMenu).click().build().perform();
+	}
+	
+	
+	/**
+	 * method to click on logout
+	 */
+	
+	public void clickOnlogoutButton() {
+		driver.findElement(logout).click();
+	}
+
+}
+====================================
+package pom_initElement;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class FacebookTest {
+
+	public static void main(String[] args) {
+		// webdriver initialization
+		System.setProperty("webdriver.chrome.driver", "./Drivers/chromedriver.exe");
+		WebDriver driver=new ChromeDriver();
+		driver.get("https://www.facebook.com/");
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		// calling methods from page 1
+		
+		FacebookLoginPageObject login=new FacebookLoginPageObject(driver);
+		login.enterUsername("xyz@gmail.com");
+		login.enterPassword("password");
+		login.clickOnLogInButton();
+		
+		// calling methods from page 2
+		
+		FacebookHomePageObject home=new FacebookHomePageObject(driver);
+		home.clickOnProfileMenu();
+		home.clickOnlogoutButton();
+		
+		driver.quit();
+
+	}
+
+}
+==================================
+
+
+
+
+

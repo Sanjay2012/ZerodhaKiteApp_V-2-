@@ -1,0 +1,60 @@
+Framework-2
+==========================
+Testng+maven project
+
+1. POM classes--> How many no pages
+2. What is test data--> valid/invalid
+  properties/ excel sheet
+
+
+POM pages:
+KiteLoginPage1
+KiteLoginPage2
+KiteLoginHomePage
+KiteLogoutPage
+
+Scenarios:
+- page title
+Test case 1: Page validation (KiteLoginPage1)
+		- text box validation
+		- login button validation
+		- link valiadation
+Test case 2: validate login-logout functionality with valid credentials
+		# page 1
+		-page title
+		-validate -->Login to Kite
+		- enter valid credentials
+		- click on login
+
+		# page 2
+		- validate UserId
+		- enter valid Pin
+		- click on Continue
+		
+		# Page 3
+		- validate username --> "SB"
+		- Validate UserID ---> KW0610
+		- click on userid
+		- click on Logout
+
+		# page 4
+		- Validate change user/ KW0610
+		- click on change user link
+		- page title
+
+## Task:
+Automate the Kite Zerodha login Logout functionality
+Url: https://kite.zerodha.com/
+UserId: KW0610
+Pass: Shiv@123
+PIN: 152022
+
+Note: Everyone explore the application so that we can write manual test cases very well for this app
+
+	
+
+		
+
+
+
+ 

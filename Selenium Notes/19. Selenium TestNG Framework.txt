@@ -1,0 +1,22 @@
+Selenium TestNG Framework
+===============================
+# Selenium TestNg data driven with Maven (bulid tool)
+- Gradle, Maven
+
+# Build tool:
+- we can add required dependecies
+- there is no need to add jars into the project
+ex. selenium, Apache poi, TestNG (jar)
+- Life cycle
+
+========================
+Create the Framework structure
+- POM.xml ==> maven file--> which contains all dependencies
+- built.gradle==> 
+
+# How to create maven project
+-------------------------------
+- Select an Archetype==> maven-archetype-quickstart
+- dependency
+- plugins
+- builds

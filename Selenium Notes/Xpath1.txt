@@ -1,0 +1,114 @@
+Locator using Xpath
+=======================
+Agenda
+---------
+Absolute Xpath
+Relative xpath
+==============
+1. Absolute xpath
+- navigate from root of parent to immediate child
+- /
+- we need to prepare html tree diagram
+- xpath is too lenghty and time consuming
+- we canot jump from parent to any child
+- html is very complex
+
+# xpath xpression for passwor   ---->/html/body/div[1]/input[2]
+# DOB ----> /html/body/div[4]/input
+
+=======================================
+
+2. Relative xpath
+- //
+- locate any element //
+
+#password===> //input[@type="password"]
+#DOB ===>  //input[@type="birthday"]
+
+
+====================================
+# html tree diagram
+
+html
+|
+body
+|
+div[1]
+	-input[1]---> UN
+	-input[2]---> pwd
+	-input[3]--->email
+div[2]
+	-a[1]  ---> link1
+	-input[1] ---> country
+div[3]
+	-a[1]-- link2
+	-a[2]-- link3
+	-a[3]-- lik4
+div[4]
+	-a[1]---link5
+	-input[1]--DOB
+	-a[2]--- link6
+
+========================================
+Xpath Locators
+==================
+1. xpath with attributes
+2. xpath by text
+3. xpath by contains text
+4. xpath by contains and attributes
+5. xpath by attributes with index --> [index]
+
+-----------------------------------------------------
+1. xpath with attributes
+syntax:
+
+//tagname[@attributeName='attributeValue']
+
+ex. type, class, id, name, placeholder, arial-label
+
+ex. //input[@class="inputtext _55r1 _6luy"]
+-------------------------
+2. xpath by text
+
+syntax
+//tagname[text()='textValue']
+
+ex-- login button present in facebook page
+
+//button[text()='Log In']
+--------------------
+3. xpath by contains text
+
+syntax:
+//tagname[contains(text(),'partial text')]
+
+ex. locating login button
+//button[contains(text(),'Log')]
+
+------------------------
+4. xpath by contains and attributes
+
+//input[contains(@name, 'reg_email__')]
+
+
+----------------------------------
+5. xpath by attributes with index
+
+Syntax:
+(//tagname[@attri=attriV])[3]      ---> match for 5 elements
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

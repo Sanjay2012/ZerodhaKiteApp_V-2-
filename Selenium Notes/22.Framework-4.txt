@@ -1,0 +1,21 @@
+Selenium Framework
+======================
+- Data driven (using properties file)
+- Understand Maven Life cycle
+- Fastest Browser
+# Which is fastest browser?
+old--> HTMLUnitDriver/ PhantumJs--> fastest
+	--> right now they are deprecated
+---------
+Chrome headless driver
+Firefox headless driver
+
+# headless:- Visual interaction with UI not come into picture
+- run the script without rendering UI
+	
+
+# Chrome driver
+
+ChromeOptions options=new ChromeOptions();
+options.addArguments("--headless");
+driver=new ChromeDriver(options);

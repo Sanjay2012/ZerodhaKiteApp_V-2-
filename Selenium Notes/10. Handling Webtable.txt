@@ -1,0 +1,140 @@
+# Handling Webtable
+===============================
+* static==> no rows remains contant
+* dynamic table==> rows not constant/ rows increasing
+
+User		Admin
+-------------------------
+		user registred
+
+===================================================
+table
+tbody--> whole table
+<td>--> std cell
+<tr>--> table rows
+<th>--> header cell
+
+==============================
+package handlingWebTable;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class CountRows {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "D:\\Automation Batch-9\\chromedriver.exe");
+		// create an object for chrome driver class
+		WebDriver driver=new ChromeDriver();
+		driver.get("file:///D:/Automation%20Batch-9/WebTable.html");
+		Thread.sleep(3000);
+		driver.manage().window().maximize();
+		
+		List<WebElement> row = driver.findElements(By.xpath("//table[@id=\"1234\"]/tbody/tr"));
+			//System.out.println(row.size());
+		int rowCount=row.size();
+		System.out.println("Total no of rows in table: "+rowCount);
+		
+	}
+
+}
+========================
+package handlingWebTable;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class ColCount {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "D:\\Automation Batch-9\\chromedriver.exe");
+		// create an object for chrome driver class
+		WebDriver driver=new ChromeDriver();
+		driver.get("file:///D:/Automation%20Batch-9/WebTable.html");
+		Thread.sleep(3000);
+		driver.manage().window().maximize();
+		
+		List<WebElement> col = driver.findElements(By.xpath("//table[@id=\"1234\"]/tbody/tr[2]/td"));
+
+		System.out.println(col.size());
+	}
+
+}
+===============================
+package handlingWebTable;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class GetTextFromTable {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "D:\\Automation Batch-9\\chromedriver.exe");
+		// create an object for chrome driver class
+		WebDriver driver=new ChromeDriver();
+		driver.get("file:///D:/Automation%20Batch-9/WebTable.html");
+		Thread.sleep(3000);
+		driver.manage().window().maximize();
+		String expected = "Java";
+		String actualText = driver.findElement(By.xpath("//table[@id=\"1234\"]/tbody/tr[4]/td[2]")).getText();
+		System.out.println(actualText);
+		if (expected.equals(actualText)) {
+			System.out.println("found");
+			
+		}else {
+			System.out.println("Not found");
+		}
+	}
+
+}
+=======================================
+package handlingWebTable;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class TextFromDynamicTable {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "D:\\Automation Batch-9\\chromedriver.exe");
+		// create an object for chrome driver class
+		WebDriver driver=new ChromeDriver();
+		driver.get("file:///D:/Automation%20Batch-9/WebTable.html");
+		Thread.sleep(3000);
+		driver.manage().window().maximize();
+		
+		//calculate row count
+		
+		List<WebElement> row = driver.findElements(By.xpath("//table[@id=\"1234\"]/tbody/tr"));
+		int rowCount=row.size();  //5
+		
+		String exp="SQL";
+		
+		for (int i = 2; i <=rowCount; i++) {
+			String act=driver.findElement(By.xpath("//table[@id=\"1234\"]/tbody/tr["+i+"]/td[2]")).getText();
+			
+		System.out.println(act);
+		if (exp.equals(act)) {
+			System.out.println("Expected value found in table");
+			break;
+			
+		}
+		}
+		
+		driver.quit();
+	}
+
+}

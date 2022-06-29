@@ -1,23 +1,26 @@
 package com.zerodha.kite.tests;
 
+import java.io.IOException;
 import java.time.Duration;
 
+import org.apache.poi.EncryptedDocumentException;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import com.domain.base.BaseClass;
+import com.domain.utilityClass.Utility;
 import com.zerodha.kite.pages.KiteLoginPage1;
 
-public class KiteLoginPagesValidation extends BaseClass {
+public class KiteLoginPagesValidationWithDD extends BaseClass {
 	public KiteLoginPage1 login1;
 	SoftAssert soft = new SoftAssert();
 
 	@Test(description = "Test Page title and Page Text", priority = 1)
-	public void verifyKiteLoginPageTitle() {
+	public void verifyKiteLoginPageTitle() throws EncryptedDocumentException, IOException {
 
 		// open url in defined driver
-		driver.get("https://kite.zerodha.com/");
+		driver.get(prop.getProperty("kiteUrl"));
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		Reporter.log("=====Application Started=====", true);
@@ -25,8 +28,12 @@ public class KiteLoginPagesValidation extends BaseClass {
 		login1 = new KiteLoginPage1(driver);
 		
 		// webelemnt status validation
-		soft.assertEquals(login1.getPageTitle(), "Kite - Zerodha's fast and elegant flagship trading platform");
-		soft.assertTrue(driver.getPageSource().contains("Login to Kite"));
+//		soft.assertEquals(login1.getPageTitle(), prop.getProperty("kiteLoginPageTitle"));
+//		soft.assertTrue(driver.getPageSource().contains(prop.getProperty("kiteLoginPageText")));
+//		
+		soft.assertEquals(login1.getPageTitle(), Utility.getTestData(0, 0));
+		soft.assertTrue(driver.getPageSource().contains(Utility.getTestData(1, 0)));
+		
 		soft.assertAll();
 	}
 
@@ -46,8 +53,8 @@ public class KiteLoginPagesValidation extends BaseClass {
 		// check error message
 		login1.clickKiteLoginPage1LoginButton();
 
-		soft.assertTrue(driver.getPageSource().contains("User ID should be minimum 6 characters."));
-		soft.assertTrue(driver.getPageSource().contains("Password should be minimum 6 characters."));
+		soft.assertTrue(driver.getPageSource().contains(prop.getProperty("userIdError")));
+		soft.assertTrue(driver.getPageSource().contains(prop.getProperty("passError")));
 		soft.assertAll();
 	}
 
@@ -56,9 +63,9 @@ public class KiteLoginPagesValidation extends BaseClass {
 		login1 = new KiteLoginPage1(driver);
 		// check error message upon entering invalid credentials
 
-		login1.setKiteLoginPage1Username("SW0712");
+		login1.setKiteLoginPage1Username(prop.getProperty("kiteInvalidUserId"));
 
-		login1.setKiteLoginPage1Password("Shiv123");
+		login1.setKiteLoginPage1Password(prop.getProperty("kiteInalidPassword"));
 
 		login1.clickKiteLoginPage1LoginButton();
 

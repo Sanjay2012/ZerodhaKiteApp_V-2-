@@ -1,0 +1,212 @@
+Handling ListBox
+===================
+- two type listbox 
+1. with select tag
+2. without select tag--> customized list box
+==============================
+* select tag
+# select class 
+
+* customized listbox
+# 1. sendkeys+keyboad actions
+  2. Keyboard actions
+===========================
+# select class
+-contains arg constructor which takes webelement as an arg
+- 3 methods to select the options available in that listbox
+1. selectByIndex()---> arg--> int
+2. selectByValue()---> arg--> string
+3. selectByVisibleText()---> string
+
+
+#Procedure
+1. identify listbox/element which we need to handle and store it in ref variable
+2. Create the object of select class with single arg as and element <that ref variable>
+3. use any one method to select option from listbox
+
+=======
+package listBox;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class HandlingListBox {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "D:\\Automation Batch-9\\chromedriver.exe");
+		// create an object for chrome driver class
+		WebDriver driver=new ChromeDriver();
+		driver.get("https://www.facebook.com/");
+		Thread.sleep(3000);
+		driver.manage().window().maximize();
+		
+		driver.findElement(By.xpath("//*[text()='Create New Account']")).click();
+		Thread.sleep(2000);
+		
+		// loacate the elements which need to handle
+		WebElement day = driver.findElement(By.id("day"));
+		WebElement month = driver.findElement(By.id("month"));
+		WebElement year = driver.findElement(By.id("year"));
+		
+		
+		// create object of select class passing ref variable
+		
+		Select d=new Select(day);
+		Select m=new Select(month);
+		Select y=new Select(year);
+		
+		
+		// handle day listbox selectByIndex(int)
+		// index start with 0
+		
+		d.selectByValue("15");
+		Thread.sleep(3000);
+		
+		// handle month listbox selectByIndex(int)
+		
+				//m.selectByValue("8");
+				m.selectByVisibleText("Feb");
+				Thread.sleep(3000);
+				
+				// handle year listbox selectByIndex(int)
+				
+				//y.selectByIndex(2015);
+				y.selectByVisibleText("2016");
+				Thread.sleep(3000);
+				
+				
+				//driver.quit();
+
+	}
+
+}
+===================================================
+
+## Methods present in select class
+
+			   i/p arg
+1. selectByIndex()          int
+2. selectByValue()         string
+3. selectByVisisbleText     string
+
+
+4. deselectByIndex()       int
+5. deselectByValue()       string
+6. deselctByVisisbleText   string
+
+7. isMultiple()     	    boolean  ==> if listbox is multi---> true
+ 					 if listbox is single---> false
+
+8. getAllSelecteOptions()   o/p---> List<WebElements>  ---> multiSelectable ListBox
+9. getFirstSelectedOption()  o/p--->  webElement
+10. getOptions()            o/p---> List<WebElements>
+
+========================
+package listBox;
+
+import java.util.Iterator;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class GetSize {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "D:\\Automation Batch-9\\chromedriver.exe");
+		// create an object for chrome driver class
+		WebDriver driver=new ChromeDriver();
+		driver.get("https://www.facebook.com/");
+		Thread.sleep(3000);
+		driver.manage().window().maximize();
+		
+		driver.findElement(By.xpath("//*[text()='Create New Account']")).click();
+		Thread.sleep(2000);
+		
+		// loacate the elements which need to handle
+		WebElement month = driver.findElement(By.id("month"));
+		
+		Select m=new Select(month);
+		
+		System.out.println(m.isMultiple()); // false
+		
+		List<WebElement> allMonths = m.getOptions();
+		System.out.println(allMonths.size());
+		
+		// for loop
+		// for each loop
+		// iterator
+		
+		// method1: for loop
+		System.out.println("============ Print options using for each loop ================");
+		
+		for (WebElement ele : allMonths) {
+			System.out.println(ele.getText());
+			
+		}
+		
+		
+//		//method2: for loop
+//		System.out.println("============ Print options using for loop ================");
+//		
+//		for (int i = 0; i <allMonths.size() ; i++) {
+//			System.out.println(allMonths.get(i).getText());
+//		}
+//		
+//		
+//		//method 3: using Iterator
+//		
+//		System.out.println("============ Print options using using Iterator ================");
+//		
+//		Iterator<WebElement> itr = allMonths.iterator();
+//		while (itr.hasNext()) {
+//			System.out.println(itr.next().getText());
+//			
+//		}
+//		
+		
+		driver.quit();
+	}
+
+}
+
+==================================================
+
+# Exceptions
+-----------------
+Q--> what happens if we try to deselect option in single selectable list
+---> unsupported opration exception
+
+Q--> same as above for multiselectable
+# not thow any exception
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

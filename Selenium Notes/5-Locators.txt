@@ -1,0 +1,55 @@
+Locators
+================================
+- used to identify the webelemnts using "locators type"
+- By--> by class findElement()---> single element ---> WebElement
+       group of elements (listBox)--> findElements()--> List<WebElement>
+- By class contains static methods called as Locator types
+
+--> static keyword
+==============================
+# Locators types
+1. tagName()
+2. id()
+3. className()
+4. name()
+5. linkText()
+6. partialLinkText()
+7. cssSelector
+4. xpath()--> id, class, type, name
+
+- all locators will take string as as input and return type By
+
+==========================================
+
+#tagName()
+driver.findElement(By.tagName(""));
+
+-we cant use to identify element uniquly, since we have many elements with same tagname in webpage
+- input, a
+- by defalut it will refer the first element
+
+#id (top priority)
+
+syntax:
+driver.findElement(By.id(""));
+
+
+#className
+syntax:
+driver.findElement(By.className(""));
+
+# linkText()
+--> it is for links available in webpage
+--> we need to provide whole test present in link
+
+syntax:
+driver.findElement(By.linkText(""));
+
+# partilLinkText()
+--> No need to provide whole test present in link
+syntax:
+driver.findElement(By.partialLinkText(""));
+
+
+
+

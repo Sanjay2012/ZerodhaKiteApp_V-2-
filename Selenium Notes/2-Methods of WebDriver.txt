@@ -1,0 +1,219 @@
+Session-2
+===================
+Methods of webdriver
+=====================
+1. get();
+-syntax: driver.get("url")
+- to open the app in specific browser
+- para==> url<== String===> correct url
+-We get "Webdriver exception" when url is not correct
+
+2. close();
+- syntax: driver.close();
+-close the current tab of the browser
+
+
+3. quite();
+- syntax: driver.quite();
+- close all the tabs of the browser
+- close terminate browser session
+-------------
+package part1_seleniumBasic;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class MethodsOfWebdriver {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "D:\\Automation Batch-9\\chromedriver.exe");
+		// create an object for chrome driver class
+		WebDriver driver=new ChromeDriver();
+		
+		// Method-1 get()
+		driver.get("https://www.facebook.com/");
+		Thread.sleep(3000);
+		
+		// method6==> maximize()
+		
+		driver.manage().window().maximize();
+		
+		Thread.sleep(3000);
+		
+		// method 4==> getTitle()
+		
+		String pageTitle = driver.getTitle();
+		System.out.println(pageTitle);
+		
+		// method 2==> close()
+		//driver.close();
+		
+		// method 3==> quite()
+		driver.quit();
+		
+
+	}
+
+}
+======================================================
+
+4.getTitle();
+- get te title of the webpage as an output
+- return type string
+
+5. getCurrentUrl()
+- get the current page url as an o/p
+- return type is string
+
+6. maximize()
+- maximize the browser page
+- syntax:
+driver.manage().window().maximize();
+
+#Thread.sleep(arg);
+arg-- int in ms
+- wait the script execution for specific time after last task
+- after "time " it will execute the next task
+# Synchronization
+--------------------
+
+package part1_seleniumBasic;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class GetPageTitle {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "D:\\Automation Batch-9\\chromedriver.exe");
+		// create an object for chrome driver class
+		WebDriver driver=new ChromeDriver();
+		driver.get("https://www.facebook.com/");
+		Thread.sleep(3000);
+	
+		
+		String actualTitle = driver.getTitle();   //  Facebook – log in or sign up
+		String expectedTitle = "Facebook – log in or sign up";
+		
+		if (actualTitle.equals(expectedTitle)) {
+			System.out.println("user navigated to correct page");
+			
+		}else {
+			System.out.println("Navigated to wrong page");
+		}
+		
+		
+		String currentPageUrl = driver.getCurrentUrl();
+		System.out.println(currentPageUrl);
+		
+		driver.quit();
+
+	}
+
+}
+
+============================================
+
+
+7.navigate().to("url");
+- it is same as get() method
+-along with it it will perform different operation
+ 1. refresh()
+ 2. forword()
+ 3. back()
+-------------
+package part1_seleniumBasic;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class NavigateMethod {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "D:\\Automation Batch-9\\chromedriver.exe");
+		// create an object for chrome driver class
+		WebDriver driver=new ChromeDriver();
+		//driver.get("https://www.facebook.com/");
+		
+		driver.navigate().to("https://www.facebook.com/");
+		Thread.sleep(3000);
+	
+		driver.navigate().to("https://google.com/");
+		Thread.sleep(3000);
+		
+		driver.navigate().back();  // facebook
+		Thread.sleep(3000);
+		
+		driver.navigate().forward(); // google
+		Thread.sleep(3000);
+		
+		driver.navigate().refresh(); // google
+		Thread.sleep(3000);
+		
+		
+		//driver.quit();
+	}
+
+}
+
+==================================================
+8. setSize()
+-use to change the size of browser
+- accept Dimentions of an argu -- H, W
+- Class
+
+9. setPosition()
+- used to change position of a browser
+-Point class
+-  argu--> x,Y (pixel)
+
+
+package part1_seleniumBasic;
+
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class OpenBrowser {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "D:\\Automation Batch-9\\chromedriver.exe");
+		// create an object for chrome driver class
+		WebDriver driver=new ChromeDriver();
+		driver.get("https://www.facebook.com/");
+		Thread.sleep(3000);
+		// set size
+		
+		
+		// setSize()
+		Dimension D=new Dimension(100, 300);
+		driver.manage().window().setSize(D);
+		
+		Thread.sleep(5000);
+		
+		
+		// setPosition()
+		
+		Point point=new Point(50, 200);
+		driver.manage().window().setPosition(point);
+		Thread.sleep(5000);
+
+		driver.close();
+	}
+
+}
+
+============================================
+
+
+
+
+
+
+
+
+
+
+
+

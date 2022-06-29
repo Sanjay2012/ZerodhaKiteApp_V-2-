@@ -1,0 +1,298 @@
+TestNG Continue
+================
+Methods==> @Test(---------------------)
+
+# TestNg Keyword
+1. priority
+2. depends on method
+3. Invocation count
+4. Enable
+5. Timeout
+
+# priority:int
+@Test methods executes as per alphabetical order
+ex.
+CreateAccount (priority=1)
+EditAccount (priority=2)
+DeleteAccount(priority=3)
+
+*default=0, +ve , -ve, duplicates
+* the value which is lowest one has higher priority
+* priority should not be variables/ fractional
+
+#DependsOnMethod="MethodName"
+SignIn()
+ComposeEmail==>(DependsOnMethod="SignIn")
+SignOut===> (DependsOnMethod="ComposeEmail")
+
+#Enable
+used to enable/desable the test method
+Enabled=false
+
+#InvocationCount=int
+- used to execute test method multiple time
+
+#Timeout
+- used to unnesserary for partucular method
+Timeout=5
+===============================================
+
+package testng;
+
+import org.testng.Reporter;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+public class TestngAnnotation1 {
+
+	@BeforeClass
+	public void openBrowser() {
+		Reporter.log("Open Browser");
+	}
+
+	@BeforeMethod
+	public void loginApp() {
+		Reporter.log("Login to App");
+	}
+
+	@Test
+	public void loginFunctionality() {
+		Reporter.log("Home page validation");
+	}
+
+	@Test
+	public void addSymbol() {
+		Reporter.log("Adding stock");
+	}
+
+	@Test
+	public void buyAMOOrder() {
+		Reporter.log("AMO Oder");
+	}
+
+	@AfterMethod
+	public void logOutApp() {
+		Reporter.log("Logout App");
+	}
+
+	@AfterClass
+	public void closeBrowser() {
+		Reporter.log("Close Browser");
+	}
+
+}
+========================
+package testng;
+
+import org.testng.annotations.Test;
+
+public class TestNgPriority {
+	@Test(priority = -10)
+	public void createAccount() {
+		System.out.println("Create Account");
+	}
+	
+	@Test(priority = 0)
+	public void editAccount() {
+		System.out.println("Edit Account");
+	}
+	
+	@Test(priority = 5)
+	public void deleteAccount() {
+		System.out.println("Delete Account");
+	}
+
+}
+
+=====================
+package testng;
+
+import org.testng.annotations.Test;
+
+public class TestNgDependsOn {
+	
+	@Test(enabled = false)
+	public void loginAccount() {
+		System.out.println("login into Account");
+	}
+	
+	@Test(dependsOnMethods ="loginAccount" )
+	public void composeEmail() {
+		System.out.println("Compose Email");
+	}
+	
+	@Test(dependsOnMethods ="loginAccount")
+	public void logoutAccount() {
+		System.out.println("Logout");
+	}
+
+}
+
+=================
+package testng;
+
+import org.testng.annotations.Test;
+
+public class TimeOut {
+	@Test(priority = 1)
+	public void loginAccount() {
+		System.out.println("login into Account");
+	}
+	
+	@Test(priority = 2,timeOut = 10000)
+	public void composeEmail() throws InterruptedException {
+		Thread.sleep(15000);
+		System.out.println("Compose Email");
+	}
+	
+	@Test(priority = 3)
+	public void logoutAccount() {
+		System.out.println("Logout");
+	}
+
+}
+==================================
+# TestNG Suite
+- used to execute all test classes
+- suite--> all test classes will be present
+- cross browser
+- parallel execution
+
+* procedure to create suite
+- Choose the package where your all test cases
+- Right click--> TestNG
+- Convert to TestNG
+- Testng.xml--- All test classes
+- Right click on testng.xml--> run --> Testng suite
+
+
+* you can see report in test-output folder
+
+--------------
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="Test">
+    <classes>
+      <class name="testng.TimeOut"/>
+      <class name="testng.TestngAnnotations"/>
+      <class name="testng.TestNgDependsOn"/>
+      <class name="testng.TestNgPriority"/>
+      <class name="testng.TestngAnnotation1"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
+--------------
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="TimeOut">
+    <classes>
+      <class name="testng.TimeOut"/>
+    </classes>
+  </test> <!-- Test -->
+<test thread-count="5" name="Annotation">
+    <classes>
+      <class name="testng.TestngAnnotations"/>
+    </classes>
+  </test> <!-- Test -->
+<test thread-count="5" name="DependsOn">
+    <classes>
+      <class name="testng.TestNgDependsOn"/>
+    </classes>
+  </test> <!-- Test -->
+<test thread-count="5" name="Priority">
+    <classes>
+      <class name="testng.TestNgPriority"/>
+    </classes>
+  </test> <!-- Test -->
+<test thread-count="5" name="Annotation1">
+    <classes>
+      <class name="testng.TestngAnnotation1"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
+---------------------------------
+
+# Testng Assertions
+# Cross browser
+# Parallel
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,126 @@
+Synchronization
+======================
+-intialize driver
+-get()-->going to open appli main page/ landing page --> 
+driver will perform another action once complete page loaded
+-image, dom
+-> PageLoadStrategies--> Normal, eagor etc.
+
+--> findElements("locator").action--> element is not found
+--> NoSuchElement/ ElementIs Not Interactable
+-------------------------------
+Def:Matching of selenium TS running speed with app speed
+
+# we can use four wait methods
+1.Thread.sleep()
+2. Implicit wait
+3. Explicit wait
+4. Fluent wait
+
+====================================
+1. Thread.sleep()--> time--> miliSeconds
+- dyanamic for all elements
+- Drawback: reduce the speed of TS
+- even element is loaded earler that what time we mentined in Thread.sleep, 
+still it will take that much time
+
+package synchronization;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Wait {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "D:\\Automation Batch-9\\chromedriver.exe");
+		// create an object for chrome driver class
+		WebDriver driver=new ChromeDriver();
+		driver.get("http://omayo.blogspot.com/");
+		driver.manage().window().maximize();
+		
+		driver.findElement(By.xpath("//*[text()='Dropdown']")).click();
+		Thread.sleep(10000);
+		driver.findElement(By.xpath("//a[text()='Flipkart']")).click();
+
+	}
+
+}
+========================================
+#implicit wait()
+----------------
+- applicable for all the elements present in script
+- global wait
+- work for all elemets equally
+#Syntax:
+driver.manage().tiomeout().impliciteWait(10, timeUnit.sec, mils, min, days)
+-if element is loaded erlier than what time we mentioned in wait, 
+then it will skip of the time
+-max it will wait for time mentioned in script
+- if timeout --> then it will throw the exception 
+
+package synchronization;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class ImplicitWait {
+
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chrome.driver", "D:\\Automation Batch-9\\chromedriver.exe");
+		// create an object for chrome driver class
+		WebDriver driver=new ChromeDriver();
+		driver.get("http://omayo.blogspot.com/");
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		driver.findElement(By.xpath("//*[text()='Dropdown']")).click();
+		driver.findElement(By.xpath("//a[text()='Flipkart']")).click();
+		
+		driver.quit();
+
+	}
+
+}
+==============================================
+
+# Explicitly wait
+- instead of waiting for all elements
+-wait for specific elemet
+
+package synchronization;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class ExpliciteWait {
+	public static void main(String[] args) {
+	System.setProperty("webdriver.chrome.driver", "D:\\Automation Batch-9\\chromedriver.exe");
+	// create an object for chrome driver class
+	WebDriver driver=new ChromeDriver();
+	driver.get("http://omayo.blogspot.com/");
+	driver.manage().window().maximize();
+	driver.manage().timeouts().implicitlyWait(5, TimeUnit.MILLISECONDS);
+	
+	driver.findElement(By.xpath("//*[text()='Dropdown']")).click();
+	//WebElement option = driver.findElement(By.xpath("//a[text()='Flipkart']"));
+	WebDriverWait wait=new WebDriverWait(driver, 5);
+	//wait.until(ExpectedConditions.visibilityOf(option));
+	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='Flipkart']")));
+	
+	
+	driver.quit();
+
+}
+}
+
+==========================================

@@ -1,0 +1,13 @@
+<html>
+<title>
+Registration Page
+</title>
+<body>
+FirstName <input type="text" id="123" name="Fname" >
+LastName <input type="text" id="1234" name="Lname" >
+MobileName <input type="text" id="1234" name="Mobile" >
+Email <input type="text" id="1234" name="email" >
+Password <input type="text" id="1234" name="pass" >
+ConfirmPassword <input type="text" id="1234" name="Cpass" >
+</body>
+</html>

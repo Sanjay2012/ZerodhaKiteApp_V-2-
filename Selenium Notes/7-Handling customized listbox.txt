@@ -1,0 +1,80 @@
+Customized Listbox
+=========================
+- without select tag
+- we canot use select class to select the options
+- we can handle
+	1. sendkeys() + Keys Class
+	2. sendkeys()
+
+================================
+Procedure:
+
+# approch-1 :sendkeys + keys class
+
+1. locate the element (lisbox)
+ ex. Depart from, Going To
+2. click()
+3. press--> down arrow (2 times) --> keys class
+4. press Enter key
+
+
+# approch-2: sendkeys
+1. locate the element (listbox)
+2. click
+3. sendkeys("value")
+
+=====================================
+package listBox;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class CustomizedListbox {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "D:\\Automation Batch-9\\chromedriver.exe");
+		// create an object for chrome driver class
+		ChromeOptions option=new ChromeOptions();
+		option.addArguments("--disable-notifications");
+		WebDriver driver=new ChromeDriver(option);
+		driver.get("https://www.yatra.com/");
+		Thread.sleep(3000);
+		driver.manage().window().maximize();
+		
+		/**
+		 * choose the origin (Depart From)
+		 * Approach-1: sendkeys()+ keys class
+		 */
+		
+		// locate the Depart From Listbox
+		WebElement origin = driver.findElement(By.xpath("//*[@id=\"BE_flight_origin_city\"]"));
+		origin.click();
+		Thread.sleep(2000);
+		origin.sendKeys(Keys.ARROW_DOWN);
+		Thread.sleep(2000);
+		origin.sendKeys(Keys.ARROW_DOWN);
+		Thread.sleep(2000);
+		origin.sendKeys(Keys.ENTER);
+		Thread.sleep(2000);
+		
+		
+		
+		/**
+		 * choose the dest (Going To)
+		 * Approach-2: sendkeys()
+		 */
+		
+		WebElement dest = driver.findElement(By.xpath("//*[@id=\"BE_flight_arrival_city\"]"));
+		dest.click();
+		Thread.sleep(2000);
+		dest.sendKeys("Chennai");
+
+	}
+
+}
+
+
