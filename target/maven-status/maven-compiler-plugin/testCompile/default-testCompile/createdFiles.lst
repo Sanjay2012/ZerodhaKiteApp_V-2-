@@ -1,0 +1,11 @@
+com\zerodha\kite\pages\KiteLoginPage1.class
+com\zerodha\kite\pages\KitePageAfterLogout.class
+com\zerodha\kite\tests\KiteLoginPagesValidationWithDD.class
+sampleTest\BrowserCompatabilityTest.class
+sampleTest\Demo.class
+com\zerodha\kite\pages\KiteLoginPage2.class
+sampleTest\KiteZerodhaLoginPageValidation.class
+com\zerodha\kite\pages\KiteHomePage.class
+com\zerodha\kite\tests\KiteLoginTest.class
+sampleTest\KiteZerodhaLogin.class
+com\zerodha\kite\tests\KiteLoginPagesValidationWithoutDD.class
